@@ -53,16 +53,16 @@ export class AStar {
 				return this.fronteira[0]
 			}
 			// remove o item a ser explorado da fronteira e adiciona nos explorados
-			let cabeca = this.adicionarCabecaNosExplorados();
+			let cabeca = this.removerCabecaDaFronteiraEAdicionarNosExplorados();
 			// expande nodes vizinhas da node a ser explorada
-			this.expendirNodesVizinhas(cabeca);
+			this.expandirNodesVizinhas(cabeca);
 			// ordena a fronteira por custo
 			this.sortFronteiraPorCustoTotal();
 		}
 	}
 
 	// expande nodes vizinhas da node a ser explorada
-	expendirNodesVizinhas(itemFronteira: ItemFronteira) {
+	expandirNodesVizinhas(itemFronteira: ItemFronteira) {
 		itemFronteira.cabeca.vizinhos.forEach(vizinho => {
 			// verifica se deve incluir node vizinha na fronteira
 			if (this.deveIncluirNodeNaFronteira(vizinho.node)) {
@@ -78,7 +78,7 @@ export class AStar {
 		return !this.explorados.includes(node)
 	}
 	// remove o item a ser explorado da fronteira e adiciona nos explorados
-	adicionarCabecaNosExplorados(): ItemFronteira {
+	removerCabecaDaFronteiraEAdicionarNosExplorados(): ItemFronteira {
 		let removido = this.fronteira.shift();
 		this.explorados.push(removido!.cabeca)
 		return removido!

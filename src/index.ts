@@ -52,8 +52,7 @@ const logPassos = true;
 const heuristicas: FuncaoHeuristica[] = [heuristicaDistanciaEuclidiana];
 
 
-console.log("Largura")
-console.log("")
+console.log("Largura\n")
 let algoritmoLargura = new Largura(allNodes, nodeInicial, nodeObjetivo, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis)
 algoritmoLargura.preparar();
@@ -65,13 +64,8 @@ if (caminhoEncontradoLargura) {
 } else {
 	console.log("Caminho não encontrado Largura");
 }
-console.log("")
 
-
-console.log("---------------")
-console.log("")
-console.log("Profundidade")
-console.log("")
+console.log("\n---------------\nProfundidade\n")
 let algoritmoProfundidade = new Profundidade(allNodes, nodeInicial, nodeObjetivo, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis)
 algoritmoProfundidade.preparar();
@@ -83,12 +77,8 @@ if (caminhoEncontradoProfundidade) {
 } else {
 	console.log("Caminho não encontrado Profundidade");
 }
-console.log("")
 
-console.log("---------------")
-console.log("")
-console.log("Busca Uniforme")
-console.log("")
+console.log("\n---------------\nBusca Uniforme\n")
 let algoritmoBuscaUniforme = new BuscaUniforme(allNodes, nodeInicial, nodeObjetivo, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis)
 algoritmoBuscaUniforme.preparar();
@@ -100,12 +90,8 @@ if (caminhoEncontradoBuscaUniforme) {
 } else {
 	console.log("Caminho não encontrado BuscaUniforme");
 }
-console.log("")
 
-console.log("----------------")
-console.log("")
-console.log("GBF")
-console.log("")
+console.log("\n---------------\nGBF\n")
 let algoritmoGBF = new GBF(allNodes, nodeInicial, nodeObjetivo, heuristicas, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis, calculo das heurísticas)
 algoritmoGBF.preparar();
@@ -117,12 +103,8 @@ if (caminhoEncontradoGBF) {
 } else {
 	console.log("Caminho não encontrado GBF");
 }
-console.log("")
 
-console.log("----------------")
-console.log("")
-console.log("A*")
-console.log("")
+console.log("\n---------------\nA*\n")
 let algoritmoAStar = new AStar(allNodes, nodeInicial, nodeObjetivo, heuristicas, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis, calculo das heurísticas)
 algoritmoAStar.preparar();
@@ -130,9 +112,9 @@ algoritmoAStar.preparar();
 let caminhoEncontradoAStar = algoritmoAStar.executar();
 // Loga o caminho encontrado, caso encontrado:
 if (caminhoEncontradoAStar) {
-	console.log("Caminho encontrado AStar: " + caminhoEncontradoAStar.print(AStar.getCustoTotalItemFronteira));
+	console.log("Caminho encontrado A*: " + caminhoEncontradoAStar.print(AStar.getCustoTotalItemFronteira));
 } else {
-	console.log("Caminho não encontrado AStar");
+	console.log("Caminho não encontrado A*");
 }
 console.log("")
 
