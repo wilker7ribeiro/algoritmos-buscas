@@ -1,6 +1,7 @@
 import { Node } from "../classes/Node";
 import { writeFile } from 'fs'
 import { join } from 'path';
+const { convertFile } = require('convert-svg-to-png');
 import * as SVGJS from "svg.js"
 
 
@@ -178,14 +179,20 @@ export class SvgMaker {
 		return margin + ((this.maxY - valorY) * lineSpace)
 	}
 
-	write(filePath: string = '/canvas.svg') {
-		let fullFilePath = join(process.cwd(), filePath);
-		writeFile(fullFilePath, this.draw.svg(), err => {
+	write(filePath: string = '/') {
+		let svgString = this.draw.svg()
+		let fullFileSvgPath = join(process.cwd(), filePath, '/grafo.svg');
+		writeFile(fullFileSvgPath, svgString, err => {
 			if (err) {
 				return console.log(err);
 			}
-
-			console.log("Svg com o grafo salvo em: ", fullFilePath);
+			convertFile(fullFileSvgPath, {
+				height: ((this.pontosYMaior0 + this.pontosYMenor0) * lineSpace) + margin * 2,
+				width: ((this.pontosXMaior0 + this.pontosXMenor0) * lineSpace) + margin * 2,
+			}).then((pngOutPath: string) => {
+				console.log("Png com o grafo salvo em: ", pngOutPath);
+			})
+			console.log("Svg com o grafo salvo em: ", fullFileSvgPath);
 		})
 
 	}

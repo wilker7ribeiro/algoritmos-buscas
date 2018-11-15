@@ -14,6 +14,7 @@
     "@types/node": "^10.12.2"
   },
   "dependencies": {
+    "convert-svg-to-png": "^0.4.0",
     "svg.js": "^2.7.0",
     "svgdom": "0.0.15"
   }

@@ -136,4 +136,4 @@ if (caminhoEncontradoAStar) {
 }
 console.log("")
 
-new SvgMaker(allNodes).write('./imagem.svg')
+new SvgMaker(allNodes).write('/')
