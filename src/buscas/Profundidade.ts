@@ -1,5 +1,5 @@
-import { Node } from '../models/Node'
-import { ItemFronteira } from '../models/ItemFronteira';
+import { Node } from '../classes/Node'
+import { ItemFronteira } from '../classes/ItemFronteira';
 
 export class Profundidade {
 	nodes: Node[]

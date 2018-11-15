@@ -1,6 +1,6 @@
-import { Node } from '../models/Node'
-import { FuncaoHeuristica } from '../models/FuncaoHeuristica';
-import { ItemFronteira } from '../models/ItemFronteira';
+import { Node } from '../classes/Node'
+import { FuncaoHeuristica } from '../classes/FuncaoHeuristica';
+import { ItemFronteira } from '../classes/ItemFronteira';
 
 export class GBF {
 	nodes: Node[]

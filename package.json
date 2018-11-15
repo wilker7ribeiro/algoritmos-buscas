@@ -12,5 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^10.12.2"
+  },
+  "dependencies": {
+    "svg.js": "^2.7.0",
+    "svgdom": "0.0.15"
   }
 }

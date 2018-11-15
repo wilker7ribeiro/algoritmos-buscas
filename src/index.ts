@@ -1,11 +1,11 @@
-import { Node } from "./models/Node";
-import { FuncaoHeuristica } from "./models/FuncaoHeuristica";
+import { Node } from "./classes/Node";
+import { FuncaoHeuristica } from "./classes/FuncaoHeuristica";
 import { AStar } from "./buscas/AStar";
 import { BuscaUniforme } from "./buscas/BuscaUniforme";
 import { GBF } from "./buscas/GBF";
-import { performance } from 'perf_hooks'
 import { Largura } from "./buscas/Largura";
 import { Profundidade } from "./buscas/Profundidade";
+import { SvgMaker } from "./svg/SvgMaker";
 
 // Cria todas as Nodes do Grafo, passando a Label, o X e o Y
 const nodeS = new Node("S", 13, 2);
@@ -38,6 +38,7 @@ nodeD.addVizinho(nodeG, 2);
 nodeD.addVizinho(nodeN, 3);
 nodeD.addVizinho(nodeQ, 7);
 
+
 // Função heuristica de distância euclidiana
 let heuristicaDistanciaEuclidiana: FuncaoHeuristica = node => {
 	return Math.sqrt(Math.pow(nodeObjetivo.x - node.x, 2) + Math.pow(nodeObjetivo.y - node.y, 2))
@@ -51,8 +52,8 @@ const logPassos = true;
 const heuristicas: FuncaoHeuristica[] = [heuristicaDistanciaEuclidiana];
 
 
-console.log("")
 console.log("Largura")
+console.log("")
 let algoritmoLargura = new Largura(allNodes, nodeInicial, nodeObjetivo, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis)
 algoritmoLargura.preparar();
@@ -64,11 +65,13 @@ if (caminhoEncontradoLargura) {
 } else {
 	console.log("Caminho não encontrado Largura");
 }
-
-
 console.log("")
+
+
 console.log("---------------")
+console.log("")
 console.log("Profundidade")
+console.log("")
 let algoritmoProfundidade = new Profundidade(allNodes, nodeInicial, nodeObjetivo, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis)
 algoritmoProfundidade.preparar();
@@ -80,10 +83,12 @@ if (caminhoEncontradoProfundidade) {
 } else {
 	console.log("Caminho não encontrado Profundidade");
 }
-
 console.log("")
+
 console.log("---------------")
-console.log("BuscaUniforme")
+console.log("")
+console.log("Busca Uniforme")
+console.log("")
 let algoritmoBuscaUniforme = new BuscaUniforme(allNodes, nodeInicial, nodeObjetivo, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis)
 algoritmoBuscaUniforme.preparar();
@@ -95,10 +100,12 @@ if (caminhoEncontradoBuscaUniforme) {
 } else {
 	console.log("Caminho não encontrado BuscaUniforme");
 }
-
 console.log("")
+
 console.log("----------------")
+console.log("")
 console.log("GBF")
+console.log("")
 let algoritmoGBF = new GBF(allNodes, nodeInicial, nodeObjetivo, heuristicas, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis, calculo das heurísticas)
 algoritmoGBF.preparar();
@@ -110,10 +117,12 @@ if (caminhoEncontradoGBF) {
 } else {
 	console.log("Caminho não encontrado GBF");
 }
-
 console.log("")
+
 console.log("----------------")
-console.log("AStar")
+console.log("")
+console.log("A*")
+console.log("")
 let algoritmoAStar = new AStar(allNodes, nodeInicial, nodeObjetivo, heuristicas, { logPassos });
 // Realizas preparações do algorítimo (inicialização de variáveis, calculo das heurísticas)
 algoritmoAStar.preparar();
@@ -125,3 +134,6 @@ if (caminhoEncontradoAStar) {
 } else {
 	console.log("Caminho não encontrado AStar");
 }
+console.log("")
+
+new SvgMaker(allNodes).write('./imagem.svg')
