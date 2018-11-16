@@ -9,7 +9,7 @@ const margin = 30
 
 const lineMarkersPointDiameter = 5
 const lineSpace = 30;
-
+const widthLinhasTransparentes = 0.15
 const nodeLabelColor = '#ff0000'
 
 
@@ -83,6 +83,14 @@ export class SvgMaker {
 		// draw text X
 		let xLetter = this.draw.plain("X")
 		xLetter.attr({ x: this.linhaXpositionX + linhaXwidth + margin - xLetter.bbox().width, y: this.linhaXpositionY + (xLetter.bbox().height / 2) })
+
+		// linhas transparentes para ajudar a ver
+		for (let i = 0; i <= (this.pontosYMaior0 + this.pontosYMenor0); i++) {
+			let linhaYPlaceHolderpositionX = margin
+			let linhaYPlaceHolderpositionY = margin + (i* lineSpace)
+			this.draw.line(linhaYPlaceHolderpositionX, linhaYPlaceHolderpositionY, linhaYPlaceHolderpositionX + linhaXwidth, linhaYPlaceHolderpositionY).stroke({ width: widthLinhasTransparentes })
+			
+		}
 	}
 
 	desenharEixoY() {
@@ -93,6 +101,14 @@ export class SvgMaker {
 		// draw text Y
 		let yLetter = this.draw.plain("Y");
 		yLetter.attr({ x: (this.linhaYpositionX) - (yLetter.bbox().width / 2), y: yLetter.bbox().height })
+
+		// linhas transparentes para ajudar a ver
+		for (let i = 0; i <= (this.pontosXMaior0 + this.pontosXMenor0); i++) {
+			let linhaYPlaceHolderpositionX = margin + (i * lineSpace)
+			let linhaYPlaceHolderpositionY = margin
+			this.draw.line(linhaYPlaceHolderpositionX, linhaYPlaceHolderpositionY, linhaYPlaceHolderpositionX, linhaYheigth + linhaYPlaceHolderpositionY).stroke({ width: widthLinhasTransparentes })
+			
+		}
 	}
 
 	adicionarPontosEixoX() {
